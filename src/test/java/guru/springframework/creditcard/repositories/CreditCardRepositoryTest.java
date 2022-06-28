@@ -1,6 +1,7 @@
 package guru.springframework.creditcard.repositories;
 
 import guru.springframework.creditcard.domain.CreditCard;
+import guru.springframework.creditcard.services.EncryptionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -18,6 +19,9 @@ class CreditCardRepositoryTest {
     final String CREDIT_CARD = "12345678900000";
 
     @Autowired
+    EncryptionService encryptionService;
+
+    @Autowired
     CreditCardRepository creditCardRepository;
 
     @Test
@@ -29,7 +33,10 @@ class CreditCardRepositoryTest {
 
         CreditCard savedCC = creditCardRepository.saveAndFlush(creditCard);
 
-        System.out.println("Getting CC from database");
+        System.out.println("Getting CC from database: " + creditCard.getCreditCardNumber());
+
+        System.out.println("CC At Rest");
+        System.out.println("CC Encrypted: " + encryptionService.encrypt(CREDIT_CARD));
 
         CreditCard fetchedCC = creditCardRepository.findById(savedCC.getId()).get();
 
