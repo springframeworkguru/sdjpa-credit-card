@@ -38,7 +38,7 @@ class CreditCardRepositoryTest {
 
         CreditCard savedCC = creditCardRepository.saveAndFlush(creditCard);
 
-        System.out.println("Getting CC from database: " + creditCard.getCreditCardNumber());
+        System.out.println("Getting CC from database: " + savedCC.getCreditCardNumber());
 
         System.out.println("CC At Rest");
         System.out.println("CC Encrypted: " + encryptionService.encrypt(CREDIT_CARD));
