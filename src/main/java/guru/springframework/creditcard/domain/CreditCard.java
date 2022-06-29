@@ -1,5 +1,6 @@
 package guru.springframework.creditcard.domain;
 
+import guru.springframework.creditcard.interceptors.EncryptedString;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class CreditCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @EncryptedString
     private String creditCardNumber;
 
     private String cvv;
