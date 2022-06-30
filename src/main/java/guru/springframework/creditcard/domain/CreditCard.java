@@ -1,20 +1,20 @@
 package guru.springframework.creditcard.domain;
 
-import guru.springframework.creditcard.interceptors.EncryptedString;
 import jakarta.persistence.*;
 
 /**
  * Created by jt on 6/27/22.
  */
 @Entity
-@EntityListeners(CreditCardJPACallback.class)
+//@EntityListeners(CreditCardJPACallback.class)
 public class CreditCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @EncryptedString
+    //@EncryptedString
+    @Convert(converter = CreditCardConverter.class)
     private String creditCardNumber;
 
     private String cvv;
